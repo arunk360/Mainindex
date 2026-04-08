@@ -6,7 +6,6 @@ backend:
 auth_endpoint: /auth
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
-
 collections:
   - name: "news"
     label: "Breaking News"
