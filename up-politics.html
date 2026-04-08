@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>उत्तर प्रदेश राजनीति - KheriNews24</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; line-height: 1.8; color: #333; }
+        .container { max-width: 800px; margin: auto; }
+        .header { text-align: center; background: #d32f2f; color: white; padding: 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        /* News Card Style */
+        .news-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 6px solid #d32f2f; transition: transform 0.2s; }
+        .news-card:hover { transform: translateY(-3px); }
+        .news-card h2 { margin-top: 5px; color: #1a1a1a; font-size: 24px; cursor: pointer; line-height: 1.4; }
+        .news-card h2:hover { color: #d32f2f; }
+        .news-meta { font-size: 14px; color: #777; font-weight: bold; margin-bottom: 8px; display: block; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        
+        /* Image Style */
+        .news-img { width: 100%; height: auto; max-height: 350px; object-fit: cover; border-radius: 8px; margin: 15px 0; border: 1px solid #ddd; }
+
+        /* Hidden Content (Details) */
+        .full-news { display: none; margin-top: 15px; padding-top: 15px; color: #444; font-size: 18px; border-top: 1px dashed #ccc; }
+        
+        /* Button Style */
+        .read-btn { background: #d32f2f; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 15px; font-size: 16px; }
+        .read-btn:hover { background: #b71c1c; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" style="text-decoration:none; color:#d32f2f; font-weight:bold;">← होम पेज पर वापस जाएँ</a>
+
+    <div class="header">
+        <h1>UP Politics: उत्तर प्रदेश की बड़ी खबरें</h1>
+        <p>राजनीति, चुनाव और सरकार के हर बड़े फैसले की ताज़ा जानकारी</p>
+    </div>
+
+    <div class="news-card">
+        <span class="news-meta">📅 06 अप्रैल, 2026 | चुनाव 2027</span>
+        <h2 onclick="toggleNews('news1')">UP चुनाव 2027: अभी से मैदान में उतरी पार्टियां, नए गठबंधन की चर्चा तेज</h2>
+        <p>उत्तर प्रदेश में 2027 के विधानसभा चुनाव को लेकर सियासी हलचल तेज हो गई है। सभी प्रमुख दल अपनी रणनीति बनाने में जुट गए हैं...</p>
+        
+        <div id="news1" class="full-news">
+            <img src="https://via.placeholder.com/600x350" class="news-img" alt="UP Politics">
+            <p>भारतीय जनता पार्टी ने 'बूथ मजबूत' अभियान के जरिए जमीनी स्तर पर काम शुरू कर दिया है। वहीं, समाजवादी पार्टी (SP) अपने 'PDA' फॉर्मूले को और विस्तार देने में जुटी है। सूत्रों का कहना है कि कई क्षेत्रीय दल मिलकर एक नया मोर्चा बनाने की कोशिश कर रहे हैं, जिससे आने वाले चुनाव में मुकाबला और दिलचस्प हो सकता है।</p>
+        </div>
+        <button class="read-btn" onclick="toggleNews('news1')">विस्तार से पढ़ें →</button>
+    </div>
+
+    <div class="news-card">
+        <span class="news-meta">📅 06 अप्रैल, 2026 | कैबिनेट फैसला</span>
+        <h2 onclick="toggleNews('news2')">UP कैबिनेट का बड़ा फैसला: किसानों को मिली बड़ी सौगात, विकास कार्यों के लिए बजट मंजूर</h2>
+        <p>मुख्यमंत्री की अध्यक्षता में हुई अहम बैठक में किसानों के हित में कई बड़े फैसले लिए गए हैं, जिससे ग्रामीण अर्थव्यवस्था को मजबूती मिलेगी...</p>
+        
+        <div id="news2" class="full-news">
+            <img src="https://via.placeholder.com/600x350" class="news-img" alt="UP Farmers">
+            <p>इस बैठक में नए ट्यूबवेल लगाने और ग्रामीण सड़कों के चौड़ीकरण के लिए करोड़ों रुपये का बजट पास किया गया है। इसके अलावा, बिजली बिलों में राहत देने की योजना पर भी विचार किया गया। सरकार का लक्ष्य है कि मानसून से पहले सिंचाई से जुड़ी सभी समस्याओं का समाधान कर लिया जाए।</p>
+        </div>
+        <button class="read-btn" onclick="toggleNews('news2')">विस्तार से पढ़ें →</button>
+    </div>
+
+    <div class="news-card">
+        <span class="news-meta">📅 05 अप्रैल, 2026 | विपक्ष का प्रदर्शन</span>
+        <h2 onclick="toggleNews('news3')">विपक्ष का हल्ला बोल: बेरोजगारी के मुद्दे पर सड़क से संसद तक संघर्ष का ऐलान</h2>
+        <p>विपक्षी दलों ने सरकार को घेरने की बड़ी योजना तैयार की है। बेरोजगारी और महंगाई को लेकर राज्यव्यापी प्रदर्शन की तैयारी है...</p>
+        
+        <div id="news3" class="full-news">
+            <img src="https://via.placeholder.com/600x350" class="news-img" alt="Protest UP">
+            <p>आगामी सप्ताह से विपक्षी दल युवाओं के साथ मिलकर जिला मुख्यालयों पर धरना देंगे। नेताओं का आरोप है कि भर्ती प्रक्रियाओं में देरी हो रही है, जिससे युवाओं का भविष्य अधर में है। विपक्ष ने मांग की है कि खाली पड़े सरकारी पदों को जल्द से जल्द भरा जाए और रोजगार गारंटी योजना को और सख्त बनाया जाए।</p>
+        </div>
+        <button class="read-btn" onclick="toggleNews('news3')">विस्तार से पढ़ें →</button>
+    </div>
+
+    <div class="news-card">
+        <span class="news-meta">📅 05 अप्रैल, 2026 | राज्यसभा चुनाव</span>
+        <h2 onclick="toggleNews('news4')">राज्यसभा चुनाव UP: दिल्ली कौन जाएगा? नए चेहरों पर दांव खेल सकती हैं पार्टियां</h2>
+        <p>उत्तर प्रदेश की खाली हो रही राज्यसभा सीटों के लिए नामांकन की प्रक्रिया शुरू हो चुकी है। इस बार चयन में चौंकाने वाले नाम सामने आ सकते हैं...</p>
+        
+        <div id="news4" class="full-news">
+            <img src="https://via.placeholder.com/600x350" class="news-img" alt="UP Politics Delhi">
+            <p>पार्टी आलाकमान इस बार क्षेत्रीय और जातीय समीकरणों को साधने की कोशिश कर रहा है। पुराने दिग्गजों की जगह सक्रिय युवाओं और महिला नेताओं को प्राथमिकता दी जा रही है। राजनीतिक पंडितों का मानना है कि इन चयनों का सीधा असर 2027 के विधानसभा चुनाव की तैयारियों पर पड़ेगा।</p>
+        </div>
+        <button class="read-btn" onclick="toggleNews('news4')">विस्तार से पढ़ें →</button>
+    </div>
+
+    <div class="news-card">
+        <span class="news-meta">📅 04 अप्रैल, 2026 | पंचायत चुनाव</span>
+        <h2 onclick="toggleNews('news5')">UP पंचायत चुनाव: गांवों में बढ़ने लगी सियासी तपिश, दिग्गजों ने शुरू किया जनसंपर्क</h2>
+        <p>पंचायत चुनावों को विधानसभा का 'सेमीफाइनल' माना जा रहा है। गांव की सरकार बनाने के लिए उम्मीदवारों ने कमर कस ली है...</p>
+        
+        <div id="news5" class="full-news">
+            <img src="https://via.placeholder.com/600x350" class="news-img" alt="UP Village News">
+            <p>गांव-गांव में चौपालें लग रही हैं और बड़े नेता भी अपने समर्थकों के लिए वोट मांगते नजर आ रहे हैं। इस बार के पंचायत चुनाव डिजिटल माध्यमों पर भी लड़े जा रहे हैं, जहां उम्मीदवार सोशल मीडिया के जरिए अपनी उपलब्धियां गिना रहे हैं। प्रशासन ने भी शांतिपूर्ण मतदान के लिए सुरक्षा के कड़े इंतजाम किए हैं।</p>
+        </div>
+        <button class="read-btn" onclick="toggleNews('news5')">विस्तार से पढ़ें →</button>
+    </div>
+
+</div>
+
+<script>
+    function toggleNews(id) {
+        var content = document.getElementById(id);
+        var btn = content.nextElementSibling;
+        
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            btn.innerHTML = "विस्तार से पढ़ें →";
+        } else {
+            content.style.display = "block";
+            btn.innerHTML = "वापस जाएँ ↑";
+        }
+    }
+</script>
+
+</body>
+</html>

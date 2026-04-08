@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KheriNews24 | खेल दुनिया</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --nav-bg: #002e5b;
+            --card-bg: #ffffff; --accent-color: #ce0000;
+        }
+
+        body { background-color: var(--bg-color); color: var(--text-color); margin: 0; font-family: Arial, sans-serif; line-height: 1.6; }
+        header { background: #fff; padding: 15px 10%; text-align: center; border-bottom: 3px solid var(--nav-bg); }
+        .logo { font-size: 28px; font-weight: 900; color: var(--nav-bg); text-decoration: none; }
+        .logo span { color: var(--accent-color); }
+
+        nav { background: var(--nav-bg); display: flex; justify-content: center; overflow-x: auto; position: sticky; top: 0; z-index: 100; }
+        nav a { color: white; padding: 15px; text-decoration: none; font-weight: bold; white-space: nowrap; }
+
+        .container { max-width: 900px; margin: 30px auto; padding: 0 15px; }
+        
+        /* News Card */
+        .card { background: var(--card-bg); border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #ddd; overflow: hidden; }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .tag { background: var(--accent-color); color: white; padding: 3px 10px; font-size: 12px; border-radius: 3px; font-weight: bold; }
+        
+        .short-text { display: block; margin: 10px 0; font-weight: bold; font-size: 1.1rem; }
+        
+        /* Long News (Initially Hidden) */
+        .full-news { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; color: #444; }
+
+        /* Read More Button */
+        .read-more-btn { 
+            background: #f1f1f1; color: var(--nav-bg); border: none; padding: 10px 20px; 
+            cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%; text-align: center;
+            transition: 0.3s; margin-top: 10px;
+        }
+        .read-more-btn:hover { background: var(--nav-bg); color: white; }
+
+        /* Ad Box */
+        .ad-box { background: #fffde7; border: 2px dashed #ccc; padding: 15px; margin: 20px 0; text-align: center; position: relative; }
+        .ad-label { position: absolute; top: 0; right: 0; background: #999; color: #fff; font-size: 10px; padding: 2px 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">KHERI<span>NEWS24</span></a>
+    </header>
+
+    <nav>
+        <a href="index.html">होम</a>
+        <a href="up-politics.html">उत्तर प्रदेश</a>
+        <a href="rojgar.html">रोजगार</a>
+        <a href="khel.html">खेल समाचार</a>
+    </nav>
+
+    <div class="container">
+        <h2 style="color: var(--nav-bg); border-bottom: 2px solid var(--accent-color); display: inline-block;">आज की खेल खबरें</h2>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/800x400?text=IPL+2026" alt="IPL">
+            <div class="card-content">
+                <span class="tag">Cricket</span>
+                <span class="short-text">IPL 2026: लखनऊ सुपर जायंट्स की रोमांचक जीत, प्लेऑफ की राह आसान।</span>
+                
+                <div class="full-news" id="news1">
+                    <p>कल रात खेले गए मुकाबले में लखनऊ ने दिल्ली को 5 विकेट से मात दी। कप्तान केएल राहुल ने 45 गेंदों में 72 रनों की तूफानी पारी खेली। इस जीत के साथ लखनऊ अब पॉइंट्स टेबल में दूसरे स्थान पर आ गई है। निकोलस पूरन ने आखिरी ओवर में दो छक्के लगाकर मैच खत्म किया।</p>
+                </div>
+                
+                <button class="read-more-btn" onclick="toggleNews('news1', this)">पूरा पढ़ें ↓</button>
+            </div>
+        </div>
+
+        <div class="ad-box">
+            <span class="ad-label">SPONSORED</span>
+            <h4>🏏 असली कश्मीरी विलो बैट पर 40% की भारी छूट!</h4>
+            <p>आज ही ऑर्डर करें और प्रोफेशनल खिलाड़ी बनें।</p>
+            <button style="background: green; color:white; border:none; padding:5px 15px; border-radius:3px;">अभी खरीदें</button>
+        </div>
+
+        <div class="card">
+            <img src="https://via.placeholder.com/800x400?text=Neeraj+Chopra" alt="Javelin">
+            <div class="card-content">
+                <span class="tag">Olympics</span>
+                <span class="short-text">नीरज चोपड़ा ने डायमंड लीग में जीता गोल्ड, रचा नया इतिहास।</span>
+                
+                <div class="full-news" id="news2">
+                    <p>भारत के गोल्डन बॉय नीरज चोपड़ा ने एक बार फिर अपना जलवा बिखेरा है। उन्होंने डायमंड लीग के फाइनल में 89.94 मीटर का थ्रो फेंककर स्वर्ण पदक अपने नाम किया। नीरज ने मैच के बाद कहा कि उनका अगला लक्ष्य 90 मीटर के आंकड़े को पार करना है। पूरे देश में इस जीत की लहर है।</p>
+                </div>
+                
+                <button class="read-more-btn" onclick="toggleNews('news2', this)">पूरा पढ़ें ↓</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <span class="tag">Local</span>
+                <span class="short-text">लखीमपुर खीरी: जिला स्तरीय फुटबॉल टूर्नामेंट का आगाज़ कल से।</span>
+                <div class="full-news" id="news3">
+                    <p>शहर के जीआईसी ग्राउंड में कल सुबह 10 बजे से जिला स्तरीय फुटबॉल प्रतियोगिता शुरू होने जा रही है। इसमें कुल 16 टीमें हिस्सा ले रही हैं। फाइनल मुकाबला रविवार को खेला जाएगा, जिसमें मुख्य अतिथि के रूप में जिला अधिकारी शामिल होंगे।</p>
+                </div>
+                <button class="read-more-btn" onclick="toggleNews('news3', this)">पूरा पढ़ें ↓</button>
+            </div>
+        </div>
+
+        </div>
+
+    <script>
+        function toggleNews(id, btn) {
+            var fullNews = document.getElementById(id);
+            if (fullNews.style.display === "block") {
+                fullNews.style.display = "none";
+                btn.innerHTML = "पूरा पढ़ें ↓";
+            } else {
+                fullNews.style.display = "block";
+                btn.innerHTML = "कम दिखाएं ↑";
+            }
+        }
+    </script>
+
+</body>
+</html>
