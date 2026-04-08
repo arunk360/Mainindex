@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-username/kherinews24 #arun360
+  repo: arunk360/Mainindex
   branch: main
   base_url: https://your-oauth-proxy.vercel.app
 
