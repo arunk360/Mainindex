@@ -2,7 +2,9 @@ backend:
   name: github
   repo: arunk360/Mainindex
   branch: main
-  base_url: https://netlify-cms-github-oauth-provider-gray.vercel.app/
+  base_url: base_url: https://netlify-cms-github-oauth-provider-gray.vercel.app
+auth_endpoint: /auth
+
 
 
 media_folder: "images/uploads"
