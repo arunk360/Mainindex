@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kherinews24 | ताज़ा खबरें</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333;
+            --header-bg: #ffffff; --nav-bg: #002e5b;
+            --card-bg: #ffffff; --border-color: #ddd;
+            --accent-color: #ce0000;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0;
+            --header-bg: #1e1e1e; --nav-bg: #000000;
+            --card-bg: #1e1e1e; --border-color: #333;
+        }
+
+        body { transition: 0.3s; background-color: var(--bg-color); color: var(--text-color); margin: 0; font-family: Arial, sans-serif; }
+        header { background: var(--header-bg); padding: 15px 10%; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--nav-bg); }
+        .logo { font-size: 28px; font-weight: 900; color: var(--nav-bg); text-decoration: none; }
+        .logo span { color: var(--accent-color); }
+        .visual-btn { background: var(--accent-color); color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 20px; font-weight: bold; }
+
+        nav { background: var(--nav-bg); display: flex; justify-content: center; overflow-x: auto; }
+        nav a { color: white; padding: 15px; text-decoration: none; font-weight: bold; white-space: nowrap; }
+
+        #live-clock { background: #eee; padding: 8px 10%; font-size: 14px; text-align: center; border-bottom: 1px solid #ddd; color: #333; }
+
+        .breaking-container { display: flex; align-items: center; background: var(--accent-color); color: white; text-decoration: none; border-bottom: 2px solid #900; }
+        .breaking-label { background: #fff; color: var(--accent-color); padding: 10px 15px; font-weight: 900; display: flex; align-items: center; }
+        .scrolling-text { flex-grow: 1; font-weight: bold; font-size: 16px; }
+
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid var(--border-color); transition: transform 0.2s; height: 100%; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-3px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 15px; flex-grow: 1; }
+        .card-content h3 { margin: 10px 0; font-size: 1.2rem; color: var(--text-color); }
+        .card-content a { text-decoration: none; color: inherit; }
+        .read-more { display: inline-block; margin-top: auto; color: var(--nav-bg); font-weight: bold; text-decoration: none; padding-top: 10px; }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .alert-dot { height: 10px; width: 10px; background: red; border-radius: 50%; margin-right: 8px; animation: blink 1s infinite; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">KHERI<span>NEWS24</span></a>
+        <button class="visual-btn" onclick="toggleTheme()" id="themeBtn">Visual: Dark Mode</button>
+    </header>
+
+    <nav>
+        <a href="index.html">होम</a>
+        <a href="up-politics.html">उत्तर प्रदेश</a>
+        <a href="#">खीरी विशेष</a>
+        <a href="rojgar.html">रोजगार</a>
+        <a href="sports.html">खेल & प्रतियोगिता</a>
+    </nav>
+
+    <div id="live-clock">लोड हो रहा है...</div>
+
+    <div class="breaking-container">
+        <div class="breaking-label"><span class="alert-dot"></span> FLASH NEWS</div>
+        <div class="scrolling-text">
+            <marquee behavior="scroll" direction="left" scrollamount="8">🚨 बड़ी खबर: ताज़ा अपडेट्स के लिए जुड़े रहें... 🚨</marquee>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="news-grid" id="news-grid">
+            <p style="text-align:center; grid-column:1/-1;">खबरें लोड हो रही हैं...</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // --- 1. CONFIG (यहाँ आपका डेटा डाल दिया है) ---
+        const firebaseConfig = {
+          apiKey: "AIzaSyD-T6hMhjquBc1P6nV7WKpCU1iD_H6HWIM",
+          authDomain: "kherinews24-b17c1.firebaseapp.com",
+          projectId: "kherinews24-b17c1",
+          storageBucket: "kherinews24-b17c1.firebasestorage.app",
+          messagingSenderId: "465874103480",
+          appId: "1:465874103480:web:34d271fa6e12505c77984d"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- 2. THEME & CLOCK LOGIC ---
+        window.toggleTheme = () => {
+            const body = document.documentElement;
+            const isDark = body.getAttribute("data-theme") === "dark";
+            body.setAttribute("data-theme", isDark ? "light" : "dark");
+            document.getElementById("themeBtn").innerText = isDark ? "Visual: Dark Mode" : "Visual: Light Mode";
+            localStorage.setItem("theme", isDark ? "light" : "dark");
+        };
+
+        function updateClock() {
+            const clockEl = document.getElementById('live-clock');
+            if(!clockEl) return;
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            clockEl.innerHTML = now.toLocaleDateString('hi-IN', options) + " | " + now.toLocaleTimeString('hi-IN');
+        }
+
+        // --- 3. NEWS LOADING LOGIC ---
+        async function loadAllNews() {
+            const grid = document.getElementById('news-grid');
+            let allNews = [];
+
+            try {
+                // Firebase (Local News)
+                const snap = await getDocs(collection(db, "news"));
+                snap.forEach(doc => allNews.push({ ...doc.data(), category: "📍 स्थानीय", color: "#28a745" }));
+
+                // News API (Global News)
+                const res = await fetch("https://newsapi.org/v2/top-headlines?country=in&apiKey=6a76d710fe1446ea9f0359fdb5e038b0");
+                const data = await res.json();
+                const apiNews = data.articles.map(n => ({
+                    title: n.title,
+                    image: n.urlToImage || "https://via.placeholder.com/400x200?text=Kheri+News",
+                    description: n.description || "ताज़ा खबरों के लिए यहाँ क्लिक करें।",
+                    link: n.url,
+                    category: "देश-दुनिया",
+                    color: "#ce0000"
+                }));
+
+                allNews = [...allNews, ...apiNews];
+                renderNews(allNews);
+            } catch (e) {
+                grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>खबरें लोड करने में समस्या आ रही है।</p>";
+            }
+        }
+
+        function renderNews(news) {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = news.map((n, i) => {
+                let ad = (i > 0 && i % 4 === 0) ? `<div style="grid-column:1/-1; background:#eee; padding:15px; text-align:center; border-radius:8px; margin:10px 0; color:#666; border:1px solid #ddd;">ADVERTISEMENT</div>` : "";
+                
+                return `
+                ${ad}
+                <div class="card">
+                    <img src="${n.image}" onerror="this.src='https://via.placeholder.com/400x200?text=News+Image'">
+                    <div class="card-content">
+                        <span style="color:${n.color || '#002e5b'}; font-size:12px; font-weight:bold;">${n.category}</span>
+                        <h3><a href="${n.link}" target="_blank">${n.title}</a></h3>
+                        <p>${n.description ? n.description.substring(0, 100) : ''}...</p>
+                        <a href="${n.link}" target="_blank" class="read-more">पूरा पढ़ें →</a>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        window.onload = () => {
+            updateClock();
+            setInterval(updateClock, 1000);
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute("data-theme", "dark");
+                document.getElementById("themeBtn").innerText = "Visual: Light Mode";
+            }
+            loadAllNews();
+        };
+    </script>
+</body>
+</html>
