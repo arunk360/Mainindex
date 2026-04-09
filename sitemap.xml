@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://kherinews24.vercel.app/</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://kherinews24.vercel.app/up-politics.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://kherinews24.vercel.app/rojgar.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://kherinews24.vercel.app/sports.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://kherinews24.vercel.app/breaking-news.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://kherinews24.vercel.app/kisan.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <priority>0.80</priority>
+  </url>
+</urlset>
